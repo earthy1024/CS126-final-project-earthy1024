@@ -63,8 +63,12 @@ void MyApp::mouseDown(MouseEvent event) {
     if (event.isLeftDown()) {
         drawPaint(event);
     }
-
-
+}
+    
+void MyApp::mouseDrag(MouseEvent event) {
+    if (event.isLeftDown()) {
+        drawPaint(event);
+    }
 }
 
 
