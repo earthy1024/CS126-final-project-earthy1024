@@ -1,3 +1,17 @@
 # Development
+-**4/26/20** 
+    -Began basic design of interface
+    -Need to make buttons to allow for various choices of colors and sizes
+    -Need to be able to save image into a file location    
 
+---
+-**4/27/20** 
+    -Learned how of a way to simulate a button in cinder
+    -Added functionality to test for correct usage in app
+    -Need to be able to add several buttons and link functionality to them
+---
+-**4/28/20** 
+    -Finished functionality for buttons and works properly
+    -Need to make them visually appealing
+    -Need to figure out how to allow user text input in app4
 ---
