@@ -3,7 +3,6 @@
     -Began basic design of interface
     -Need to make buttons to allow for various choices of colors and sizes
     -Need to be able to save image into a file location    
-
 ---
 -**4/27/20** 
     -Learned how of a way to simulate a button in cinder
