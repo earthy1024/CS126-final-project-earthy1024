@@ -8,7 +8,7 @@
 namespace mylibrary {
 
 void ConvertImage(cinder::Surface surface, std::string name);
-
+void ConnectToHost(std::string path);
 }  // namespace mylibrary
 
 
