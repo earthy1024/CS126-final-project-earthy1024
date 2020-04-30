@@ -87,3 +87,17 @@ if(NOT catch2_POPULATED)
 endif()
 
 # Add more CMake libraries here ...
+# curl library.
+FetchContent_Declare(
+        libcurl
+        GIT_REPOSITORY https://github.com/curl/curl.git
+)
+
+# Adds curl library.
+FetchContent_GetProperties(libcurl)
+if(NOT libcurl_POPULATED)
+FetchContent_Populate(libcurl)
+add_subdirectory(${libcurl_SOURCE_DIR} ${libcurl_BINARY_DIR})
+endif()
+
+target_link_libraries(cinder-myapp libcurl)
