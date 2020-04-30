@@ -14,3 +14,7 @@
     -Need to make them visually appealing
     -Need to figure out how to allow user text input in app4
 ---
+-**4/29/20**
+    -Finished building curl library and fixed linking errors
+    -Need to learn how to access web elements using the library.
+---
