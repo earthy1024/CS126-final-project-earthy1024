@@ -1,6 +1,7 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
 #include "my_app.h"
+#include <mylibrary/converter.h>
 
 #include <cinder/app/App.h>
 #include <cinder/Font.h>
@@ -61,6 +62,7 @@ void MyApp::draw() {
         CreateButton("Medium", button_size, cinder::vec2(750, 320));
         CreateButton("Big", button_size, cinder::vec2(750, 370));
         CreateButton("Large", button_size, cinder::vec2(750, 420));
+        CreateButton("Submit", button_size, cinder::vec2(500, 800));
     }
 
 }
@@ -88,6 +90,18 @@ void MyApp::mouseDown(MouseEvent event) {
             &&  event.getPos().x > button_list[index].x - 25
             &&  event.getPos().y < button_list[index].y + 15
             &&  event.getPos().y > button_list[index].y - 15) {
+                if (button_name[index] == "Submit") {
+                    cinder::Surface surface = copyWindowSurface();
+                    // Add user input code
+                    mylibrary::ConvertImage(surface, "TestTwo");
+
+                    // This segment can be used to open QRCode surface
+                    cinder::gl::clear(Color(0, 0, 0));
+                    cinder::gl::color(1, 1, 1);
+                    cinder::Surface newSurface = cinder::Surface(cinder::loadImage("C:/Users/HP/Documents/CinderFiles/testqrcode.png"));
+                    cinder::gl::Texture2dRef texture = cinder::gl::Texture::create(newSurface);
+                    cinder::gl::draw(texture);
+                }
                 SelectColor(button_name[index]);
                 SelectSize(button_name[index]);
             }
@@ -128,8 +142,8 @@ void MyApp::SelectSize(const std::string& text) {
 void MyApp::CreateButton(const std::string& text, const cinder::ivec2& size, const cinder::vec2& loc) {
     cinder::gl::color(Color::white());
 
-    button_list.emplace_back(loc);
-    button_name.emplace_back(text);
+    button_list.push_back(loc);
+    button_name.push_back(text);
 
     auto box = TextBox()
         .alignment(TextBox::CENTER)
