@@ -15,7 +15,7 @@ layout.
 -[libcurl - https://github.com/curl/curl.git]
 ---
 **Author**: Prithvi - [`prithvi4@illinois.edu`](mailto:prithvi4@illinois.edu)
- 
+ ---
 This project is a simple drawing interface that uses the cinder library for application tools.
 Features include font sizes and colors as well the ability to load images into the drawing.
 The drawing can than be saved into a file of your choosing on your device.
