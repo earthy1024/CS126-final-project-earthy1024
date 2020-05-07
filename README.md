@@ -13,7 +13,9 @@ layout.
 -[cmake]
 ### Library
 -[libcurl](https://github.com/curl/curl.git)
+
 -[Cinder](https://github.com/cinder/Cinder.git)
+
 ---
 **Author**: Prithvi - [`prithvi4@illinois.edu`](mailto:prithvi4@illinois.edu)
  ---
