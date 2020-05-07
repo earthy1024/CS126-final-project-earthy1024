@@ -9,11 +9,9 @@
 #include <cinder/Vector.h>
 #include <cinder/params/Params.h>
 #include <cinder/app/RendererGl.h>
-#include <direct.h>
-#include <windows.h>
-#include <windows.ui.xaml.resources.h>
+
 #include <Commdlg.h>
-#include <tchar.h>
+
 
 
 namespace myapp {
@@ -22,12 +20,13 @@ namespace myapp {
     using cinder::app::KeyEvent;
     using cinder::app::MouseEvent;
     using cinder::TextBox;
-    cinder::params::InterfaceGlRef mParams;
     bool begin_draw = true;
     bool draw_finished = false;
     bool start_type = false;
     bool path_typed = false;
     bool capital = false;
+    bool search = false;
+    bool clear = false;
     std::string filename = "C:/Users/HP/Documents/CinderFiles/";
     std::vector<cinder::vec2> button_list;
     std::vector<std::string> button_name;
@@ -56,17 +55,13 @@ namespace myapp {
             UpdateFileName();
             DrawButtons();
         } else if (path_typed) {
-            cinder::gl::clear(Color(0, 0, 0));
-            cinder::Surface image = cinder::Surface(cinder::loadImage(filename));
-            cinder::gl::Texture2dRef texture2 = cinder::gl::Texture::create(image);
-            cinder::gl::draw(texture2);
-            cinder::gl::Texture2dRef texture1 = cinder::gl::Texture::create(current);
-            cinder::gl::draw(texture1);
-
-            DrawButtons();
             path_typed = false;
+            search = true;
+        } else if (clear) {
+            cinder::gl::clear(cinder::Color(0, 0, 0));
+            DrawButtons();
+            clear = false;
         }
-
 
     }
     cinder::Surface MyApp::copyDraw() {
@@ -96,7 +91,9 @@ namespace myapp {
         CreateButton("Big", button_size, cinder::vec2(750, 470), cinder::Color(0, 0, 0));
         CreateButton("Large", button_size, cinder::vec2(750, 520), cinder::Color(0, 0, 0));
         CreateButton("Image", button_size, cinder::vec2(750, 570), cinder::Color(0, 0, 0));
-        CreateButton("Submit", button_size, cinder::vec2(750, 620), cinder::Color(0, 0, 0));
+        CreateButton("Clear", button_size, cinder::vec2(750, 620), cinder::Color(0, 0, 0));
+        CreateButton("Submit", button_size, cinder::vec2(750, 670), cinder::Color(0, 0, 0));
+
         cinder::gl::color(1, 1, 1);
         cinder::gl::drawSolidRect(cinder::Rectf(700, 50, 800, 700));
     }
@@ -136,8 +133,19 @@ namespace myapp {
         filename += event.getChar();
     }
 
-
     void MyApp::mouseDown(MouseEvent event) {
+        if (search) {
+            if (event.isLeftDown()) {
+                cinder::gl::clear(Color(0, 0, 0));
+                cinder::Surface image = cinder::Surface(cinder::loadImage(filename));
+                cinder::gl::Texture2dRef texture2 = cinder::gl::Texture::create(image);
+                cinder::gl::draw(texture2, cinder::vec2(event.getX() - 200, event.getY() - 200));
+                cinder::gl::Texture2dRef texture1 = cinder::gl::Texture::create(current);
+                cinder::gl::draw(texture1);
+                DrawButtons();
+                search = false;
+            }
+        }
         if (event.isLeftDown()) {
             for (int index = 0; index < button_list.size(); index++) {
                 if (event.getPos().x < button_list[index].x + 30
@@ -149,6 +157,8 @@ namespace myapp {
                         path_typed = false;
                         current = copyDraw();
                         UpdateFileName();
+                    } else if(button_name[index] == "Clear") {
+                        clear = true;
                     } else if (button_name[index] == "Submit") {
                         mylibrary::ConvertImage(copyDraw(), "CropTest");
                     }
@@ -199,7 +209,7 @@ namespace myapp {
     }
 
 
-    void MyApp::CreateButton(std::string text, const cinder::ivec2& size, const cinder::vec2& loc, cinder::Color color) {
+    void MyApp::CreateButton(std::string text, const cinder::ivec2& size, const cinder::vec2& loc, const cinder::Color& color) {
         button_list.push_back(loc);
         button_name.push_back(text);
 
