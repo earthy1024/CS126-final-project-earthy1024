@@ -12,7 +12,7 @@ layout.
 ### Dependencies
 -[cmake]
 ### Library
--[libcurl]
+-[libcurl - https://github.com/curl/curl.git]
 ---
 **Author**: Prithvi - [`prithvi4@illinois.edu`](mailto:prithvi4@illinois.edu)
  
