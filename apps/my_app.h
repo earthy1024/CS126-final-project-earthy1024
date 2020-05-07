@@ -4,6 +4,7 @@
 #define FINALPROJECT_APPS_MYAPP_H_
 
 #include <cinder/app/App.h>
+#include <cinder/Text.h>
 
 
 namespace myapp {
@@ -15,7 +16,8 @@ class MyApp : public cinder::app::App {
         Blue,
         Green,
         Orange,
-        Yellow
+        Teal,
+        Purple
     };
     enum class PaintSize {
         One = 5,
@@ -31,11 +33,14 @@ class MyApp : public cinder::app::App {
   void draw() override;
   static void SelectColor(const std::string& text);
   static void SelectSize(const std::string& text);
-  void DrawPaint(cinder::app::MouseEvent) const;
+  void DrawPaint(const cinder::app::MouseEvent&) const;
   void keyDown(cinder::app::KeyEvent) override;
   void mouseDown(cinder::app::MouseEvent) override;
   void mouseDrag(cinder::app::MouseEvent) override;
-  static void CreateButton(const std::string& text, const cinder::ivec2& size, const cinder::vec2& loc);
+  static void CreateButton(std::string text, const cinder::ivec2& size, const cinder::vec2& loc, cinder::Color color);
+  cinder::Surface copyDraw();
+  void UpdateFileName();
+  void DrawButtons();
 };
 
 }  // namespace myapp
