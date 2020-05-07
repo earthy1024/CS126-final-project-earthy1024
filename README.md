@@ -6,7 +6,7 @@
 Read [this document](https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html) to understand the project
 layout.
 
-## Nothing
+## Interface
 ![Interface](https://github.com/CS126SP20/final-project-earthy1024/blob/master/assets/UI.jpg)
 
 **Author**: Anonymous - [`example@illinois.edu`](mailto:example@illinois.edu)
