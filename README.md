@@ -9,4 +9,8 @@ layout.
 ## Interface
 ![Interface](https://github.com/CS126SP20/final-project-earthy1024/blob/master/assets/UI.jpg)
 
+### Dependencies
+-[cmake]
+### Library
+-[libcurl]
 **Author**: Anonymous - [`example@illinois.edu`](mailto:example@illinois.edu)
