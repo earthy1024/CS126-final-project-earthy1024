@@ -10,10 +10,6 @@
 #include <cinder/params/Params.h>
 #include <cinder/app/RendererGl.h>
 
-#include <Commdlg.h>
-
-
-
 namespace myapp {
 
     using cinder::Color;
@@ -34,10 +30,6 @@ namespace myapp {
     MyApp::PaintColor paint_color = MyApp::PaintColor::Red;
     cinder::ivec2 button_size = cinder::ivec2(60, 30);
     cinder::Surface current;
-    OPENFILENAME ofn;
-    char szFile[260];
-    HWND hwnd;
-    HANDLE hf;
 
     MyApp::MyApp() { }
 
@@ -75,7 +67,6 @@ namespace myapp {
             cinder::gl::clear(Color(0, 0, 0));
             begin_draw = false;
             draw_finished = false;
-            // button("");
             DrawButtons();
         }
     }
@@ -160,7 +151,7 @@ namespace myapp {
                     } else if(button_name[index] == "Clear") {
                         clear = true;
                     } else if (button_name[index] == "Submit") {
-                        mylibrary::ConvertImage(copyDraw(), "CropTest");
+                        mylibrary::ConvertImage(copyDraw(), "Result");
                     }
                     SelectColor(button_name[index]);
                     SelectSize(button_name[index]);
